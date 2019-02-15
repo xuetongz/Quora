@@ -1,2 +1,2 @@
-# kaggle-Quora-Insincere-Questions-Classification
+# kaggle-QIQC
 https://www.kaggle.com/c/quora-insincere-questions-classification
