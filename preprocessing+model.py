@@ -1,13 +1,9 @@
-import numpy as np # linear algebra
-import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
-
-# Input data files are available in the "../input/" directory.
-# For example, running this (by clicking run or pressing Shift+Enter) will list the files in the input directory
+import numpy as np 
+import pandas as pd
 
 import os
 print(os.listdir("../input"))
 
-# Any results you write to the current directory are saved as output.
 
 import time
 import random
@@ -46,8 +42,8 @@ linear_dropout=0.1
 
 
 
-train= pd.read_csv("../input/train.csv")
-test = pd.read_csv("../input/test.csv")
+train= pd.read_csv("train.csv")
+test = pd.read_csv("test.csv")
 print("Train shape : ",train.shape)
 print("Test shape : ",test.shape)
 df=pd.concat([train,test],sort=True)
@@ -77,7 +73,6 @@ def clean_special_punctuations(text):
     for punc in special_punc_mappings:
         if punc in text:
             text = text.replace(punc, special_punc_mappings[punc])
-    # 注意顺序，remove_diacritics放前面会导致 'don´t' 被处理为 'don t'
     text = remove_diacritics(text)
     return text
 def clean_number(text):
@@ -645,7 +640,7 @@ for i, (train_idx, valid_idx) in enumerate(splits):
     test_preds[:, i] = test_preds_fold
 
 #################Save prediction
-sub = pd.read_csv('../input/sample_submission.csv')
+sub = pd.read_csv('sample_submission.csv')
 search_result = threshold_search(y_train, train_preds)
 sub['prediction'] = test_preds.mean(1) > search_result['threshold']
 sub.to_csv("submission.csv", index=False)
